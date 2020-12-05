@@ -16,34 +16,34 @@ import java.sql.*;
  */
 public class CustomConnection {
     private static String driverClass = "com.mysql.jdbc.Driver";
-    private static String hostName= "localhost";
-    private static String userName="rapiperchaUser";
-    private static String password="rapiperchaPassword";
-    private static String dataBaseName="rapiperchaDB";
-    private static String url= "jdbc:mysql://" +hostName + "/" + dataBaseName;
-
+    private static String hostName = "localhost";
+    private static String userName = "rapiperchaUser";
+    private static String password = "rapiperchaPassword";
+    private static String dataBaseName = "rapiperchaDB";
+    private static String url = "jdbc:mysql://" +hostName + "/" + dataBaseName;
+    private static String thisClassName = "CustomConnection";
     private static Connection connection = null;
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getConnection() throws Exception {
       if (connection == null) {
          try {
             Class.forName(driverClass);
             connection = DriverManager.getConnection(url, userName, password);
          } catch (SQLException e) {
-            throw new SQLException(e);
+            throw new Exception("["+thisClassName+"] "+e.getMessage());
          } catch (ClassNotFoundException e) {
-            throw new ClassCastException(e.getMessage());
+            throw new Exception("["+thisClassName+"] "+e.getMessage());
          }
       }
       return connection;
     }
     
-    public static void close() throws SQLException {
+    public static void close() throws Exception {
       if (connection != null) {
          try {
              connection.close();
          } catch (SQLException e) {
-            throw new SQLException(e);
+            throw new Exception("["+thisClassName+"] "+e.getMessage());
         }
     }
    }
