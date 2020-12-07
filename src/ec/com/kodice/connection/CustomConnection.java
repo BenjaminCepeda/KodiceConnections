@@ -15,12 +15,14 @@ import java.sql.*;
  * @date 2020/12/03 
  */
 public class CustomConnection {
-    private static String driverClass = "com.mysql.jdbc.Driver";
+    private static String driverClass = "com.mysql.cj.jdbc.Driver";
     private static String hostName = "localhost";
-    private static String userName = "rapiperchaUser";
-    private static String password = "rapiperchaPassword";
-    private static String dataBaseName = "rapiperchaDB";
-    private static String url = "jdbc:mysql://" +hostName + "/" + dataBaseName;
+    private static String port = "3306";
+    private static String userName = "rapiperchauser";
+    private static String password = "rapiperchapassword";
+    private static String dataBaseName = "rapiperchadb";
+    private static String url = "jdbc:mysql://" + hostName + ":" + port
+            + "/" + dataBaseName + "?serverTimezone=UTC";
     private static String thisClassName = "CustomConnection";
     private static Connection connection = null;
 
