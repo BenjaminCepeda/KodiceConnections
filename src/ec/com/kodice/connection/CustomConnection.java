@@ -43,7 +43,9 @@ public class CustomConnection {
     public static void close() throws Exception {
       if (connection != null) {
          try {
-             connection.close();
+             if (!connection.isClosed())
+                connection.close();
+             connection = null;
          } catch (SQLException e) {
             throw new Exception("["+thisClassName+"] "+e.getMessage());
         }
