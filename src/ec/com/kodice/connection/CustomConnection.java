@@ -9,7 +9,7 @@ package ec.com.kodice.connection;
 import java.sql.*;
 
 /**
- * Esta clase permite la conexión a Base de Datos
+ * Esta clase permite la conexiÃ³n a Base de Datos
  * @author Benjamin Cepeda
  * @version v1.0
  * @date 2020/12/03 
@@ -45,10 +45,12 @@ public class CustomConnection {
          try {
              if (!connection.isClosed())
                 connection.close();
-             connection = null;
          } catch (SQLException e) {
             throw new Exception("["+thisClassName+"] "+e.getMessage());
-        }
+        } finally {
+             connection = null;            
+         }
+         
     }
    }
     
