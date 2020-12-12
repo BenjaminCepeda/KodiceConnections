@@ -25,6 +25,10 @@ public class CustomConnection {
     private static String url = "jdbc:mysql://" + hostName + ":" + port
             + "/" + dataBaseName + "?serverTimezone=UTC";
     private static String thisClassName = "CustomConnection";
+    private static final String OPEN_CONNECTION_ERROR_MESSAGE 
+            = "Error al conectar con el Servidor de BD";
+    private static final String CLOSE_CONNECTION_ERROR_MESSAGE 
+            = "Error al cerrar la conexion con el Servidor de BD";
     private static Connection connection = null;
 
     public static Connection getConnection() throws Exception {
@@ -33,9 +37,11 @@ public class CustomConnection {
                 Class.forName(driverClass);
                 connection = DriverManager.getConnection(url, userName, password);
             } catch (SQLException e) {
-                throw new Exception("[" + thisClassName + "] " + e.getMessage());
+                throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
+                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
             } catch (ClassNotFoundException e) {
-                throw new Exception("[" + thisClassName + "] " + e.getMessage());
+                throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
+                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
             }
         }
         return connection;
@@ -47,7 +53,8 @@ public class CustomConnection {
              if (!connection.isClosed())
                 connection.close();
          } catch (SQLException e) {
-            throw new Exception("["+thisClassName+"] "+e.getMessage());
+                throw new Exception(CLOSE_CONNECTION_ERROR_MESSAGE + ": " 
+                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
         } finally {
              connection = null;            
          }
