@@ -38,10 +38,10 @@ public class CustomConnection {
                 connection = DriverManager.getConnection(url, userName, password);
             } catch (SQLException e) {
                 throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
-                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
+                        + e.getMessage() + "\n" + "["+thisClassName+"]\n");
             } catch (ClassNotFoundException e) {
                 throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
-                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
+                        + e.getMessage() + "\n" + "["+thisClassName+"]\n");
             }
         }
         return connection;
@@ -54,7 +54,7 @@ public class CustomConnection {
                 connection.close();
          } catch (SQLException e) {
                 throw new Exception(CLOSE_CONNECTION_ERROR_MESSAGE + ": " 
-                        + e.getMessage() + "\n\t" + "["+thisClassName+"]");
+                        + e.getMessage() + "\n" + "["+thisClassName+"]\n");
         } finally {
              connection = null;            
          }
