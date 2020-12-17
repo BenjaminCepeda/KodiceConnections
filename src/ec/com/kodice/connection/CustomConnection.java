@@ -32,17 +32,15 @@ public class CustomConnection {
     private static Connection connection = null;
 
     public static Connection getConnection() throws Exception {
-        if (connection == null) {
-            try {
-                Class.forName(driverClass);
-                connection = DriverManager.getConnection(url, userName, password);
-            } catch (SQLException e) {
-                throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
-                        + e.getMessage() + "\n" + "["+thisClassName+"]");
-            } catch (ClassNotFoundException e) {
-                throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
-                        + e.getMessage() + "\n" + "["+thisClassName+"]");
-            }
+        try {
+            Class.forName(driverClass);
+            connection = DriverManager.getConnection(url, userName, password);
+        } catch (SQLException e) {
+            throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
+                    + e.getMessage() + "\n" + "["+thisClassName+"]");
+        } catch (ClassNotFoundException e) {
+            throw new Exception(OPEN_CONNECTION_ERROR_MESSAGE + ": " 
+                    + e.getMessage() + "\n" + "["+thisClassName+"]");
         }
         return connection;
     }
