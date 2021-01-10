@@ -23,7 +23,7 @@ public class CustomConnection {
     private static String password = "rapiperchapassword";
     private static String dataBaseName = "rapiperchadb";
     private static String url = "jdbc:mysql://" + hostName + ":" + port
-            + "/" + dataBaseName + "?serverTimezone=UTC";
+            + "/" + dataBaseName + "?serverTimezone=America/Guayaquil";
     private static String thisClassName = "CustomConnection";
     private static final String OPEN_CONNECTION_ERROR_MESSAGE 
             = "Error al conectar con el Servidor de BD";
